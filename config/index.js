@@ -10,7 +10,23 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/api/aliyun/**': {
+        // target: 'http://192.168.2.3:8888', //接口域名
+        target: 'http://localhost:8080', //接口域名
+        changeOrigin: true, //是否跨域
+        pathRewrite: {
+          '^/api': '', //将 '/api' 替换为空
+        }
+      },
+      '/api': {
+         target: 'https://admin-api.macrozheng.com', //接口域名
+         changeOrigin: true, //是否跨域
+         pathRewrite: {
+           '^/api': '', //将 '/api' 替换为空
+         }
+      }
+    },
 
     // Various Dev Server settings
     host: 'localhost', // can be overwritten by process.env.HOST
